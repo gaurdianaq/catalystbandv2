@@ -1,29 +1,68 @@
 import { Link, Routes, Route } from "react-router-dom";
 
 import { Home, Videos, Gallery, Bios, Gigs } from "./pages";
+import { useState } from "react";
+import { ContentfulClientApi } from "contentful";
+import { Footer } from "./components/Footer";
 
-export function App() {
+export function App({ client }: { client: ContentfulClientApi }) {
+  const [menuVisible, setMenuVisible] = useState<boolean>(true);
+
+  const displayStyle = menuVisible ? "block" : "none";
+
   return (
     <>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
+      <button
+        id="mobilemenu"
+        onClick={() => {
+          setMenuVisible(!menuVisible);
         }}
       >
-        <Link to="/">Home</Link>
-        <Link to="/videos">Videos</Link>
-        <Link to="/gallery">Gallery</Link>
-        <Link to="/gigs">Gigs</Link>
-        <Link to="/bios">Meet the Band</Link>
-      </nav>
+        Menu
+      </button>
+      <div
+        id="themenu"
+        style={{ display: displayStyle }}
+        className="menu-block"
+      >
+        <div className="menu">
+          <ul>
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/videos">
+                Videos
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/gallery">
+                Gallery
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/gigs">
+                Gigs
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/bios">
+                Meet the Band
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home client={client} />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/gigs" element={<Gigs />} />
         <Route path="/bios" element={<Bios />} />
       </Routes>
+      <Footer client={client} />
     </>
   );
 }
