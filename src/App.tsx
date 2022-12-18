@@ -57,10 +57,10 @@ export function App({ client }: { client: ContentfulClientApi }) {
       </div>
       <Routes>
         <Route path="/" element={<Home client={client} />} />
-        <Route path="/videos" element={<Videos />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/gigs" element={<Gigs />} />
-        <Route path="/bios" element={<Bios />} />
+        <Route path="/videos" element={<Videos client={client}/>} />
+        <Route path="/gallery" element={<Gallery client={client}/>} />
+        <Route path="/gigs" element={<Gigs client={client}/>} />
+        <Route path="/bios" element={<Bios client={client}/>} />
       </Routes>
       <Footer client={client} />
     </>

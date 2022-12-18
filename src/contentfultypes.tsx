@@ -34,3 +34,21 @@ export interface ContactInfo {
   phoneNumber: EntryFields.Symbol;
   email: EntryFields.Symbol;
 }
+
+export interface Profile {
+  name: EntryFields.Symbol;
+  photo: EntryFields.Link<Asset>;
+  description: EntryFields.Text;
+}
+
+export interface YoutubeVideoContent {
+  name: EntryFields.Symbol;
+  videoSource: EntryFields.Symbol;
+}
+
+export interface GalleryImageContent {
+  title: EntryFields.Symbol;
+  image: EntryFields.Link<Asset>;
+  imageWidth: EntryFields.Number;
+  imageHeight: EntryFields.Number;
+}
